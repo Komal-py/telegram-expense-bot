@@ -1,5 +1,5 @@
 from telegram import Update
-from telegram.ext import ApplicationBuilder, CommandHandler, MessageHandler, filters, ContextTypes
+from telegram.ext import ApplicationBuilder, CommandHandler, ContextTypes
 
 class ExpenseBot:
     def __init__(self):
@@ -23,10 +23,10 @@ class ExpenseBot:
         text += f"💰 Remaining: ₹{self.remaining_balance()}"
         return text
 
-# Initialize your logic
+# Initialize bot logic
 expense_bot = ExpenseBot()
 
-# Telegram Handlers
+# Telegram Command Handlers
 async def start(update: Update, context: ContextTypes.DEFAULT_TYPE):
     await update.message.reply_text("👋 Welcome to Trip Expense Bot!\nUse /setbudget, /add, /summary")
 
@@ -55,7 +55,7 @@ async def summary(update: Update, context: ContextTypes.DEFAULT_TYPE):
 # Run the bot
 if __name__ == "__main__":
     import os
-    TOKEN = "8482441027:AAEUAxXlytQNTI0eUqzafDnclNcBq3m4Xds"  # 🔑 Replace with your real API key
+    TOKEN = os.environ["BOT_TOKEN"]  # ✅ Use environment variable
 
     app = ApplicationBuilder().token(TOKEN).build()
     app.add_handler(CommandHandler("start", start))
