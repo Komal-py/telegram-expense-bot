@@ -1,8 +1,4 @@
-# render.yaml
-services:
-  - type: web
-    name: telegram-expense-bot
-    env: python
-    buildCommand: pip install -r requirements.txt
-    startCommand: python expense_bot.py
-    runtime: python3.10
+runtime: python
+pythonVersion: 3.10
+buildCommand: "pip install -r requirements.txt"
+startCommand: "python expense_bot.py"
